@@ -17,24 +17,21 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="hero-content">
-                                <h1 data-aos="fade-up" data-aos-delay="200">HEALTHY<br><strong>TASTY FOOD</strong></h1>
                                 <div class="hero-divider" data-aos="fade-up" data-aos-delay="250"></div>
-                                <p data-aos="fade-up" data-aos-delay="300">Lorem ipsum dolor sit amet, consectetur
+                                <h1 class="mb-3" data-aos="fade-up" data-aos-delay="200">HEALTHY<br><strong>TASTY
+                                        FOOD</strong></h1>
+                                <p class="mb-3 color-dark">Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu,
                                     eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce
                                     sit amet viverra ante.</p>
                                 <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
-                                    <a href="#tentang" class="btn-primary">TENTANG KAMI</a>
+                                    <a href="/tentang" class="btn-primary">TENTANG KAMI</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="hero-image" data-aos="fade-left" data-aos-delay="300">
-                                <div class="food-circle">
-                                    <img src="{{ asset('assets/img/img-4-2000x2000.png') }}" alt="Tasty Food Platter"
-                                        style="max-width: 500px;">
-                                </div>
-                            </div>
+                        <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-delay="300">
+                            <img src="{{ asset('assets/img/img-4-2000x2000.png') }}" alt="Tasty Food Platter"
+                                class="img-fluid hero-img">
                         </div>
                     </div>
                 </div>
@@ -118,39 +115,48 @@
 
 
             <!-- News Section (Dinamis) -->
-            <section id="berita" class="news section light-background">
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>BERITA KAMI</h2>
-                </div>
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="row">
+            <section id="berita" class="news section py-5 bg-light">
+                <div class="container" data-aos="fade-up">
+                    <div class="section-title text-center mb-5">
+                        <h2 class="fw-bold">BERITA KAMI</h2>
+                    </div>
+                    <div class="row g-4">
                         @if ($beritas->isNotEmpty())
-                            {{-- Berita Utama --}}
-                            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                                <div class="featured-news">
-                                    <div class="featured-image">
-                                        <img src="{{ asset('storage/' . $beritas->first()->image) }}"
-                                            alt="{{ $beritas->first()->title }}" class="img-fluid">
-                                    </div>
-                                    <div class="featured-content">
-                                        <h4>{{ $beritas->first()->title }}</h4>
-                                        <p>{{ Str::limit($beritas->first()->content, 150) }}</p>
+                            <!-- Berita Utama -->
+                            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <img src="{{ asset('storage/' . $beritas->first()->image) }}"
+                                        alt="{{ $beritas->first()->title }}" class="card-img-top img-fluid rounded">
+                                    <div class="card-body">
+                                        <h4 class="card-title fw-bold">{{ $beritas->first()->title }}</h4>
+                                        <p class="card-text text-muted">
+                                            {{ Str::limit($beritas->first()->content, 200) }}
+                                        </p>
+                                        <a href="{{ route('berita.show', $beritas->first()->id) }}"
+                                            class="text-decoration-none text-primary fw-semibold ">
+                                            Baca selengkapnya →
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            {{-- Berita Lainnya --}}
+
+                            <!-- Berita Lainnya -->
                             <div class="col-lg-6">
-                                <div class="row gy-4">
+                                <div class="row g-4">
                                     @foreach ($beritas->skip(1) as $berita)
-                                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                                            <div class="news-item">
-                                                <div class="news-image">
-                                                    <img src="{{ asset('storage/' . $berita->image) }}"
-                                                        alt="{{ $berita->title }}" class="img-fluid">
-                                                </div>
-                                                <div class="news-content">
-                                                    <h5>{{ $berita->title }}</h5>
-                                                    <p>{{ Str::limit($berita->content, 50) }}</p>
+                                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                                            <div class="card border-0 shadow-sm h-100">
+                                                <img src="{{ asset('storage/' . $berita->image) }}"
+                                                    alt="{{ $berita->title }}" class="card-img-top img-fluid rounded">
+                                                <div class="card-body">
+                                                    <h6 class="card-title fw-bold">{{ $berita->title }}</h6>
+                                                    <p class="card-text text-muted small">
+                                                        {{ Str::limit($berita->content, 80) }}
+                                                    </p>
+                                                    <a href="{{ route('berita.show', $berita->id) }}"
+                                                        class="text-decoration-none text-warning fw-semibold">
+                                                        Baca selengkapnya
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,40 +165,54 @@
                             </div>
                         @else
                             <div class="col-12 text-center">
-                                <p>Belum ada berita yang tersedia saat ini.</p>
+                                <p class="text-muted">Belum ada berita yang tersedia saat ini.</p>
                             </div>
                         @endif
                     </div>
                 </div>
-            </section><!-- /News Section -->
+            </section>
 
-            <!-- Gallery Section (Dinamis) -->
-            <section id="galeri" class="gallery section">
-                <div class="container section-title" data-aos="fade-up">
-                    <h2>GALERI KAMI</h2>
-                </div>
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="row gy-4">
+
+
+            <!-- Gallery Section -->
+            <section id="galeri" class="gallery section py-5 bg-white">
+                <div class="container" data-aos="fade-up">
+                    <!-- Judul -->
+                    <div class="section-title text-center mb-5">
+                        <h2 class="fw-bold">GALERI KAMI</h2>
+                    </div>
+
+                    <!-- Grid Galeri -->
+                    <div class="row g-4">
                         @forelse($galeries as $galery)
-                            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                                <div class="gallery-item">
+                            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="gallery-item position-relative overflow-hidden rounded shadow-sm">
                                     <img src="{{ asset('storage/' . $galery->image) }}" alt="Gallery Image"
-                                        class="img-fluid">
+                                        class="img-fluid w-100 h-100 gallery-img">
+                                    <!-- Overlay -->
+                                    <div class="gallery-overlay d-flex align-items-center justify-content-center">
+                                        <span class="text-white fw-semibold">Lihat</span>
+                                    </div>
                                 </div>
                             </div>
                         @empty
                             <div class="col-12 text-center">
-                                <p>Belum ada gambar di galeri saat ini.</p>
+                                <p class="text-muted">Belum ada gambar di galeri saat ini.</p>
                             </div>
                         @endforelse
                     </div>
+
+                    <!-- Tombol Lihat Lebih Banyak -->
                     @if ($galeries->count() > 0)
                         <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="800">
-                            <a href="galery" class="btn-secondary">LIHAT LEBIH BANYAK</a>
+                            <a href="{{ url('/galery') }}" class="btn-primary">
+                                LIHAT LEBIH BANYAK
+                            </a>
                         </div>
                     @endif
                 </div>
-            </section><!-- /Gallery Section -->
+            </section>
+
 
         </main>
 
