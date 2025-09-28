@@ -8,6 +8,9 @@
          namun saya sesuaikan sesuai permintaan Anda untuk mengganti header & footer di file ini. --}}
 
     <body class="index-page">
+        <!-- ======= Header ======= -->
+        @include('partials.navbar')
+
 
         <main class="main">
 

@@ -12,21 +12,30 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-3">
                 <li class="nav-item">
-                    <a class="nav-link active text-dark" href="{{ url('/') }}">HOME</a>
+                    <a class="nav-link text-dark {{ Request::is('/') ? 'active' : '' }}"
+                        href="{{ url('/') }}">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/tentang') }}">TENTANG</a>
+                    <a class="nav-link text-dark {{ Request::is('tentang') ? 'active' : '' }}"
+                        href="{{ url('/tentang') }}">TENTANG</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/berita') }}">BERITA</a>
+                    <a class="nav-link text-dark {{ Request::is('berita') ? 'active' : '' }}"
+                        href="{{ url('/berita') }}">BERITA</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/galery') }}">GALERI</a>
+                    <a class="nav-link text-dark {{ Request::is('galery') ? 'active' : '' }}"
+                        href="{{ url('/galery') }}">GALERI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/kontak') }}">KONTAK</a>
+                    <a class="nav-link text-dark {{ Request::is('kontak') ? 'active' : '' }}"
+                        href="{{ url('/kontak') }}">KONTAK</a>
                 </li>
             </ul>
+            <!-- Login Button -->
+            <div class="ms-auto">
+                <a href="{{ url('/login') }}" class="btn-login-home">Login</a>
+            </div>
         </div>
     </div>
 </nav>

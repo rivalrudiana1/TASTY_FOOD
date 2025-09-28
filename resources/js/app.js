@@ -1,16 +1,17 @@
 import './bootstrap';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('#header');
-    if (header) {
-        const headerScrolled = () => {
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar-custom-home');
+    if (navbar) {
+        const navbarScrolled = () => {
             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+                navbar.classList.add('scrolled');
             } else {
-                header.classList.remove('scrolled');
+                navbar.classList.remove('scrolled');
             }
         }
-        window.addEventListener('load', headerScrolled);
-        document.addEventListener('scroll', headerScrolled);
+        window.addEventListener('load', navbarScrolled);
+        document.addEventListener('scroll', navbarScrolled);
     }
 });
