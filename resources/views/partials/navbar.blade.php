@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top bg-transparent">
+<nav class="navbar navbar-expand-lg bg-transparent">
     <div class="container">
         <!-- Brand -->
         <a class="navbar-brand fw-bold text-dark" href="{{ url('/') }}">TASTY FOOD</a>

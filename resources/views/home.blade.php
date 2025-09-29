@@ -23,10 +23,9 @@
                                 <div class="hero-divider" data-aos="fade-up" data-aos-delay="250"></div>
                                 <h1 class="mb-3" data-aos="fade-up" data-aos-delay="200">HEALTHY<br><strong>TASTY
                                         FOOD</strong></h1>
-                                <p class="mb-3 color-dark">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu,
-                                    eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce
-                                    sit amet viverra ante.</p>
+                                <p class="mb-3 color-dark">Mau makan enak tanpa takut nggak sehat? Tasty Food jawabannya!
+                                    Dari bahan fresh sampai rasa yang bikin nagih, semua diracik khusus buat kamu yang
+                                    peduli sama kesehatan tapi tetap pengen makan enak. 🌿✨</p>
                                 <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
                                     <a href="/tentang" class="btn-primary">TENTANG KAMI</a>
                                 </div>
@@ -45,9 +44,13 @@
                 <div class="container section-title" data-aos="fade-up">
                     <h2>TENTANG KAMI</h2>
                     <div class="section-divider"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo,
-                        dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel
-                        luctus ex. Fusce sit amet viverra ante.</p>
+                    <p>Tasty Food adalah tempat di mana cita rasa berkualitas bertemu dengan pengalaman kuliner yang
+                        menyenangkan. Kami berkomitmen menyajikan hidangan lezat dengan bahan-bahan pilihan, diolah dengan
+                        penuh ketelitian dan kreativitas.
+
+                        Bagi kami, makanan bukan hanya sekadar kebutuhan, tetapi juga cara untuk menghadirkan kebahagiaan,
+                        kebersamaan, dan cerita di setiap sajian. Dengan pelayanan ramah dan suasana yang nyaman, Tasty Food
+                        siap menjadi pilihan terbaik untuk menikmati momen spesial Anda.</p>
                 </div>
             </section><!-- /About Section -->
 
