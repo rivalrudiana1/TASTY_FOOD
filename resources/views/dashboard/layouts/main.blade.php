@@ -104,6 +104,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/tentang*') ? 'active' : '' }}" href="{{ url('/dashboard/tentang') }}">
+                    <i class="bi bi-info-circle-fill"></i>
+                    <span>Tentang</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard/berita*') ? 'active' : '' }}" href="{{ url('/dashboard/berita') }}">
                     <i class="bi bi-newspaper"></i>
                     <span>Berita</span>

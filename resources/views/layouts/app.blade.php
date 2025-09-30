@@ -30,6 +30,9 @@
 
 <body class="index-page">
 
+        <!-- ======= Header ======= -->
+        @include('partials.navbar')
+
     <main class="main">
         @yield('content')
     </main>

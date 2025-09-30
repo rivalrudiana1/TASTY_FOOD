@@ -6,9 +6,6 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
-    @include('partials.navbar')
-
     <main class="main">
         <!-- Hero Section -->
         <section class="hero hero-galery d-flex align-items-center justify-content-center">

@@ -14,8 +14,9 @@ use App\Http\Controllers\TentangController;
 | Halaman Pengunjung (Frontend)
 |--------------------------------------------------------------------------
 */
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/tentang', [TentangController::class, 'index'])->name('tentang');
+Route::get('/tentang', [TentangController::class, 'indexPublic'])->name('tentang');
 
 // Rute untuk menampilkan semua berita (halaman daftar berita)
 Route::get('/berita', [BeritaController::class, 'indexPublic'])->name('berita.index');
@@ -49,17 +50,19 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 */
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
-    
+
     // CRUD Berita (tanpa show karena showPublic sudah ada)
     Route::resource('berita', BeritaController::class)
-    ->except('show')
-    ->parameters(['berita' => 'berita']);
+        ->except('show')
+        ->parameters(['berita' => 'berita']);
 
-    
+    // CRUD Resource
+    Route::resource('tentang', TentangController::class);
+
+
     // CRUD Galeri
     Route::resource('galery', GaleryController::class)->except(['edit', 'update', 'show']);
-    
+
     // CRUD Kontak
     Route::resource('kontak', KontakController::class)->except(['create', 'store']);
 });
-

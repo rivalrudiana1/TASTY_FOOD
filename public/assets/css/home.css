@@ -1928,7 +1928,7 @@ body {
     background: #fff;
 }
 
-/* == STYLE BARU UNTUK HEADER == */
+/* == STYLE BARU UNTUK HEADER (WARNA DIBALIK) == */
 /* Navbar default (awal) */
 .navbar-custom {
     background: transparent !important;
@@ -1936,23 +1936,34 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Brand default (awal) */
+/* Saat discroll */
+.navbar-custom.scrolled {
+    background: rgba(255, 255, 255, 0.9) !important; /* Semi transparan putih */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+
+/* Brand */
 .navbar-brand {
     font-family: "Montserrat", sans-serif;
     font-size: 1.8rem;
     font-weight: bold;
-    color: #ffffff !important; /* Putih saat awal */
+    color: rgba(0, 0, 0, 1) !important;  /* default hitam */
     transition: color 0.3s ease;
 }
 
-/* Menu Nav default */
+.navbar-custom.scrolled .navbar-brand {
+    color: #fff !important; /* pas discroll jadi putih */
+}
+
+/* Menu Nav */
 .navbar-nav {
     margin-left: auto; /* Geser menu ke kanan */
 }
 
 .navbar-nav .nav-link {
     font-family: "Poppins", sans-serif;
-    color: #ffffff !important; /* Putih saat awal */
+    color: rgba(0, 0, 0, 1) !important; /* default hitam */
     margin: 0 15px;
     font-weight: 500;
     text-transform: uppercase;
@@ -1962,13 +1973,18 @@ body {
     transition: color 0.3s ease;
 }
 
+/* Saat discroll ubah warna font */
+.navbar-custom.scrolled .nav-link {
+    color: #fff !important; /* jadi putih pas discroll */
+}
+
 /* Underline efek */
 .navbar-nav .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    background: currentColor; /* Ikut warna font */
+    background: currentColor; /* mengikuti warna font */
     left: 0;
     bottom: 0;
     transition: width 0.3s ease;
@@ -1979,11 +1995,11 @@ body {
     width: 100%;
 }
 
-
-/* Active state awal */
+.navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    color: #ffffff !important; /* Tetap putih di awal */
+    color: currentColor !important; /* warna hover/active ikut state */
 }
+
 
 /* Saat discroll */
 #header.navbar-scrolled {

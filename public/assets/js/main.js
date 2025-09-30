@@ -12,15 +12,29 @@
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
-  function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-  }
+  /**
+ * Apply .scrolled class to the header/navbar as the page is scrolled down
+ */
+function toggleScrolled() {
+  const selectBody = document.querySelector('body');
+  const selectHeader = document.querySelector('#header');
+  if (!selectHeader.classList.contains('scroll-up-sticky') && 
+      !selectHeader.classList.contains('sticky-top') && 
+      !selectHeader.classList.contains('fixed-top')) return;
 
-  document.addEventListener('scroll', toggleScrolled);
-  window.addEventListener('load', toggleScrolled);
+  if (window.scrollY > 100) {
+    selectBody.classList.add('scrolled');
+    // Tambahan: ubah navbar jadi putih
+    selectHeader.classList.add('navbar-scrolled');
+  } else {
+    selectBody.classList.remove('scrolled');
+    selectHeader.classList.remove('navbar-scrolled');
+  }
+}
+
+document.addEventListener('scroll', toggleScrolled);
+window.addEventListener('load', toggleScrolled);
+
 
   /**
    * Mobile nav toggle
@@ -209,3 +223,5 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+

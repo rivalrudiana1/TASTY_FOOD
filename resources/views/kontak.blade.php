@@ -5,10 +5,7 @@
 @section('content')
 
     <body>
-
-        <!-- ======= Header ======= -->
-        @include('partials.navbar')
-
+        
         <main class="main">
             <!-- Hero Section -->
             <section class="hero hero-kontak d-flex align-items-center justify-content-center">
