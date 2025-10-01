@@ -104,6 +104,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/info*') ? 'active' : '' }}" href="{{ url('/dashboard/info') }}">
+                    <i class="bi bi-info-square-fill"></i>
+                    <span>Info Website</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard/tentang*') ? 'active' : '' }}" href="{{ url('/dashboard/tentang') }}">
                     <i class="bi bi-info-circle-fill"></i>
                     <span>Tentang</span>
@@ -125,6 +131,12 @@
                 <a class="nav-link {{ request()->is('dashboard/kontak*') ? 'active' : '' }}" href="{{ url('/dashboard/kontak') }}">
                     <i class="bi bi-envelope-fill"></i>
                     <span>Kontak</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/trash*') ? 'active' : '' }}" href="{{ url('/dashboard/trash') }}">
+                    <i class="bi bi-trash3-fill"></i>
+                    <span>Sampah</span>
                 </a>
             </li>
         </ul>

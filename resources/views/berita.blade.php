@@ -10,7 +10,7 @@
             <!-- Hero Section -->
             <section class="hero-section-berita d-flex align-items-center justify-content-center">
                 <div class="container text-center" data-aos="fade-up">
-                    <h1 class="display-3 fw-bold">BERITA KAMI</h1>
+                    <h1 class="display-3 fw-bold text-white">BERITA KAMI</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="/">HOME</a></li>

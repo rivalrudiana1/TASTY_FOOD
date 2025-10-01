@@ -6,8 +6,10 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\TentangController;
+use App\Http\Controllers\TrashController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,10 +61,19 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     // CRUD Resource
     Route::resource('tentang', TentangController::class);
 
-
     // CRUD Galeri
     Route::resource('galery', GaleryController::class)->except(['edit', 'update', 'show']);
 
     // CRUD Kontak
     Route::resource('kontak', KontakController::class)->except(['create', 'store']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Manajemen Informasi Website (Hanya 1 data)
+    |--------------------------------------------------------------------------
+    */
+    Route::get('info', [InfoController::class, 'index'])->name('info.index');
+    Route::post('info', [InfoController::class, 'store'])->name('info.store'); // jika belum ada data
+    Route::get('info/edit/{info}', [InfoController::class, 'edit'])->name('info.edit'); // edit data yg sudah ada
+    Route::put('info/{info}', [InfoController::class, 'update'])->name('info.update'); // update data
 });

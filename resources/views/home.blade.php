@@ -24,8 +24,9 @@
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <!-- Main CSS File -->
+    <!-- Main CSS Files -->
     <link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/navbar.css') }}" rel="stylesheet">
 </head>
 
 <body class="index-page">
@@ -33,7 +34,7 @@
     <header id="header" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <!-- Brand -->
-            <a class="navbar-brand fw-bold text-dark" href="{{ url('/') }}">TASTY FOOD</a>
+            <a class="navbar-brand fw-bold" href="{{ url('/') }}">TASTY FOOD</a>
 
             <!-- Toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -43,25 +44,24 @@
 
             <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"> {{-- Menu otomatis ke kanan --}}
+                <ul class="navbar-nav"> {{-- Class akan diatur oleh CSS --}}
                     <li class="nav-item">
-                        <a class="nav-link text-dark {{ Request::is('/') ? 'active' : '' }}"
-                            href="{{ url('/') }}">HOME</a>
+                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark {{ Request::is('tentang') ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::is('tentang') ? 'active' : '' }}"
                             href="{{ url('/tentang') }}">TENTANG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark {{ Request::is('berita') ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::is('berita') ? 'active' : '' }}"
                             href="{{ url('/berita') }}">BERITA</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark {{ Request::is('galery') ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::is('galery') ? 'active' : '' }}"
                             href="{{ url('/galery') }}">GALERI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark {{ Request::is('kontak') ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::is('kontak') ? 'active' : '' }}"
                             href="{{ url('/kontak') }}">KONTAK</a>
                     </li>
                 </ul>
@@ -101,13 +101,7 @@
             <div class="container section-title" data-aos="fade-up">
                 <h2>TENTANG KAMI</h2>
                 <div class="section-divider"></div>
-                <p>Tasty Food adalah tempat di mana cita rasa berkualitas bertemu dengan pengalaman kuliner yang
-                    menyenangkan. Kami berkomitmen menyajikan hidangan lezat dengan bahan-bahan pilihan, diolah dengan
-                    penuh ketelitian dan kreativitas.
-
-                    Bagi kami, makanan bukan hanya sekadar kebutuhan, tetapi juga cara untuk menghadirkan kebahagiaan,
-                    kebersamaan, dan cerita di setiap sajian. Dengan pelayanan ramah dan suasana yang nyaman, Tasty Food
-                    siap menjadi pilihan terbaik untuk menikmati momen spesial Anda.</p>
+                <p class="lead mb-4">{{ $tentang->deskripsi ?? 'Deskripsi belum tersedia' }}</p>
             </div>
         </section><!-- /About Section -->
 
@@ -297,8 +291,9 @@
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-    <!-- Main JS File -->
+    <!-- Main JS Files -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/navbar.js') }}"></script>
 
 </body>
 

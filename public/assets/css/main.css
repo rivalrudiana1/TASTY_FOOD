@@ -2055,9 +2055,11 @@ body {
 }
 
 .hero-tentang .hero-content h1,
+.hero-berita .hero-content h1,
 .hero-galery .hero-content h1,
 .hero-kontak .hero-content h1,
 .hero-tentang .hero-content p,
+.hero-berita .hero-content p,
 .hero-galery .hero-content p,
 .hero-kontak .hero-content p {
     color: #ffffff;
@@ -2069,7 +2071,7 @@ body {
 }
 
 .hero .breadcrumb-item a {
-    color: var(--accent-color);
+    color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
 }

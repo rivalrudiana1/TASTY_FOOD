@@ -9,8 +9,8 @@
                     Tasty Food berkomitmen menghadirkan pengalaman kuliner yang memuaskan setiap pelanggan.
                 </p>
                 <div class="social-icons">
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="{{ $info->facebook ?? '#' }}"><i class="bi bi-facebook"></i></a>
+                    <a href="{{ $info->twitter ?? '#' }}"><i class="bi bi-twitter"></i></a>
                 </div>
             </div>
 
@@ -39,9 +39,9 @@
             <!-- Contact Info -->
             <div class="col-lg-4 col-md-6 mb-4">
                 <h5>Contact Info</h5>
-                <p><i class="bi bi-envelope me-2"></i> tastyfood@gmail.com</p>
-                <p><i class="bi bi-telephone me-2"></i> +62 812 3456 7890</p>
-                <p><i class="bi bi-geo-alt me-2"></i> Kota Bandung, Jawa Barat</p>
+                <p><i class="bi bi-envelope me-2"></i> {{ $info->email ?? 'Email belum diisi' }}</p>
+                <p><i class="bi bi-telephone me-2"></i> {{ $info->telepon ?? 'Telepon belum diisi' }}</p>
+                <p><i class="bi bi-geo-alt me-2"></i> {{ $info->alamat ?? 'Alamat belum diisi' }}</p>
             </div>
         </div>
 

@@ -38,33 +38,7 @@
 
                             <div class="contact-form" data-aos="fade-up">
                                 <h2 class="section-title text-center">KIRIM PESAN</h2>
-                                @if (session('success'))
-                                    <div class="alert alert-success mb-4">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
 
-                                @if (session('error'))
-                                    <div class="alert alert-danger mb-4">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-
-                                @if (session('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
-
-                                @if (session('error'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{ session('error') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
 
                                 <form action="{{ route('kontak.store') }}" method="POST" class="row g-3" id="kontakForm">
                                     @csrf
