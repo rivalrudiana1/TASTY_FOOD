@@ -23,7 +23,7 @@
     </div>
 
     <a href="{{ url('/dashboard/berita/create') }}" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-lg"></i> Tambah Berita    </a>
+        <i class="bi bi-plus-lg"></i> Tambah Berita </a>
 
     <a href="{{ url('/dashboard/galery/create') }}" class="btn btn-primary mb-3">
         <i class="bi bi-plus-lg"></i> Tambah Gambar
@@ -86,4 +86,7 @@
             </div><!-- End Kontak Card -->
         </div>
     </section>
+
+    
+
 @endsection

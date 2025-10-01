@@ -14,7 +14,7 @@ class GaleryController extends Controller
     {
         // Mengambil semua data galeri, diurutkan dari yang terbaru
         $galeries = Galery::latest()->get();
-        
+
         // Mengirim data ke view 'galeri'
         return view('galery', compact('galeries'));
     }
@@ -49,11 +49,10 @@ class GaleryController extends Controller
 
     public function destroy(Galery $galery)
     {
-        if ($galery->image && Storage::disk('public')->exists($galery->image)) {
-            Storage::disk('public')->delete($galery->image);
-        }
+        // Jangan hapus file di sini
         $galery->delete();
-        return redirect()->route('dashboard.galery.index')->with('success', 'Gambar berhasil dihapus.');
+
+        return redirect()->route('dashboard.galery.index')
+            ->with('success', 'Gambar masuk ke sampah.');
     }
 }
-

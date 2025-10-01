@@ -76,4 +76,12 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     Route::post('info', [InfoController::class, 'store'])->name('info.store'); // jika belum ada data
     Route::get('info/edit/{info}', [InfoController::class, 'edit'])->name('info.edit'); // edit data yg sudah ada
     Route::put('info/{info}', [InfoController::class, 'update'])->name('info.update'); // update data
+    
+
+     // Menu Sampah
+    Route::get('trash', [TrashController::class, 'index'])->name('trash.index');
+    Route::put('trash/restore/{type}/{id}', [TrashController::class, 'restore'])->name('trash.restore');
+    Route::delete('trash/delete/{type}/{id}', [TrashController::class, 'forceDelete'])->name('trash.forceDelete');
 });
+
+

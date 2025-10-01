@@ -86,16 +86,13 @@ class BeritaController extends Controller
      */
     public function destroy(Berita $berita)
     {
-        // Hapus gambar kalau ada
-        if ($berita->image && Storage::disk('public')->exists($berita->image)) {
-            Storage::disk('public')->delete($berita->image);
-        }
-
-        // Hapus record
+        // Jangan hapus file di sini
         $berita->delete();
 
-        return redirect()->route('dashboard.berita.index')->with('success', 'Berita berhasil dihapus.');
+        return redirect()->route('dashboard.berita.index')
+            ->with('success', 'Berita masuk ke sampah.');
     }
+
 
     /*
     |--------------------------------------------------------------------------

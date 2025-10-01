@@ -186,6 +186,8 @@
             document.getElementById('sidebar').classList.toggle('active');
         });
     </script>
+
+    @stack('scripts')
 </body>
 </html>
 

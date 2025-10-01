@@ -1,174 +1,108 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Data Sampah</h1>
-</div>
+    <div class="container">
+        <h1>Menu Sampah</h1>
 
-@if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif  
+        <h3>Berita</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Gambar</th>
+                    <th>Judul</th>
+                    <th>Tanggal Dihapus</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($beritas as $berita)
+                    <tr>
+                        <td>
+                            @if ($berita->image)
+                                <img src="{{ asset('storage/berita/' . $berita->image) }}" alt="{{ $berita->title }}"
+                                    class="img-thumbnail" style="max-width: 100px;">
+                            @else
+                                <span class="text-muted">No image</span>
+                            @endif
+                        </td>
+                        <td>{{ $berita->title }}</td>
+                        <td>{{ $berita->deleted_at->format('d M Y H:i') }}</td>
+                        <td>
+                            <form action="{{ route('dashboard.trash.restore', ['type' => 'berita', 'id' => $berita->id]) }}"
+                                method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Pulihkan
+                                </button>
+                            </form>
+                            <form
+                                action="{{ route('dashboard.trash.forceDelete', ['type' => 'berita', 'id' => $berita->id]) }}"
+                                method="POST" style="display:inline-block;"
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus permanen item ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash3"></i> Hapus Permanen
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">Tidak ada berita di sampah</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
 
-<div class="row">
-    <!-- Berita -->
-    <div class="col-md-12 mb-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Berita Terhapus</h5>
-            </div>
-            <div class="card-body">
-                @if($trashedData['berita']->isEmpty())
-                    <p class="text-muted">Tidak ada data berita yang terhapus.</p>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Judul</th>
-                                    <th>Tanggal Hapus</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($trashedData['berita'] as $item)
-                                    <tr>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->deleted_at->format('d M Y H:i') }}</td>
-                                        <td>
-                                            <form action="{{ route('dashboard.trash.restore', ['type' => 'berita', 'id' => $item->id]) }}" 
-                                                  method="POST" class="d-inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-arrow-counterclockwise"></i> Pulihkan
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('dashboard.trash.force-delete', ['type' => 'berita', 'id' => $item->id]) }}" 
-                                                  method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus permanen?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="bi bi-trash3"></i> Hapus Permanen
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
+        <h3>Galeri</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Gambar</th>
+                    <th>Caption</th>
+                    <th>Tanggal Dihapus</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($galeries as $galery)
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/' . $galery->image) }}" alt="Gallery Image" class="img-thumbnail"
+                                style="max-width: 100px;">
+                        </td>
+                        <td>{{ $galery->caption ?? 'No caption' }}</td>
+                        <td>{{ $galery->deleted_at->format('d M Y H:i') }}</td>
+                        <td>
+                            <form action="{{ route('dashboard.trash.restore', ['type' => 'galery', 'id' => $galery->id]) }}"
+                                method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('PUT') <!-- Tambahkan ini -->
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="bi bi-arrow-counterclockwise"></i> Pulihkan
+                                </button>
+                            </form>
 
-    <!-- Galeri -->
-    <div class="col-md-12 mb-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Galeri Terhapus</h5>
-            </div>
-            <div class="card-body">
-                @if($trashedData['galery']->isEmpty())
-                    <p class="text-muted">Tidak ada data galeri yang terhapus.</p>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Gambar</th>
-                                    <th>Tanggal Hapus</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($trashedData['galery'] as $item)
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('storage/' . $item->image) }}" 
-                                                 alt="Gallery Image" style="height: 50px">
-                                        </td>
-                                        <td>{{ $item->deleted_at->format('d M Y H:i') }}</td>
-                                        <td>
-                                            <form action="{{ route('dashboard.trash.restore', ['type' => 'galery', 'id' => $item->id]) }}" 
-                                                  method="POST" class="d-inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-arrow-counterclockwise"></i> Pulihkan
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('dashboard.trash.force-delete', ['type' => 'galery', 'id' => $item->id]) }}" 
-                                                  method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus permanen?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="bi bi-trash3"></i> Hapus Permanen
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-            </div>
-        </div>
+                            <form
+                                action="{{ route('dashboard.trash.forceDelete', ['type' => 'galery', 'id' => $galery->id]) }}"
+                                method="POST" style="display:inline-block;"
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus permanen item ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash3"></i> Hapus Permanen
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">Tidak ada galeri di sampah</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
-
-    <!-- Kontak -->
-    <div class="col-md-12 mb-4">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Pesan Kontak Terhapus</h5>
-            </div>
-            <div class="card-body">
-                @if($trashedData['kontak']->isEmpty())
-                    <p class="text-muted">Tidak ada pesan kontak yang terhapus.</p>
-                @else
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Tanggal Hapus</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($trashedData['kontak'] as $item)
-                                    <tr>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->deleted_at->format('d M Y H:i') }}</td>
-                                        <td>
-                                            <form action="{{ route('dashboard.trash.restore', ['type' => 'kontak', 'id' => $item->id]) }}" 
-                                                  method="POST" class="d-inline">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-success">
-                                                    <i class="bi bi-arrow-counterclockwise"></i> Pulihkan
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('dashboard.trash.force-delete', ['type' => 'kontak', 'id' => $item->id]) }}" 
-                                                  method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus permanen?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="bi bi-trash3"></i> Hapus Permanen
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

@@ -16,11 +16,15 @@ class DashboardController extends Controller
         $galeryCount = Galery::count();
         $kontakCount = Kontak::count();
 
-        // 2. Mengirimkan hasil hitungan ke view menggunakan compact()
+        // 2. Menghitung jumlah data di sampah (Recycle Bin)
+        $trashCount = Berita::onlyTrashed()->count() + Galery::onlyTrashed()->count();
+
+        // 3. Mengirimkan hasil hitungan ke view menggunakan compact()
         return view('dashboard.index', compact(
-            'beritaCount', 
-            'galeryCount', 
-            'kontakCount'
+            'beritaCount',
+            'galeryCount',
+            'kontakCount',
+            'trashCount'
         ));
     }
 }
