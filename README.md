@@ -1,60 +1,60 @@
 # Tasty Food Portal
 
-## 1. Tajuk Projek & Ringkasan
+## 1. Judul Proyek & Ringkasan
 **Tasty Food (Web Company Profile & Portal CMS)**
-Sistem Pengurusan Kandungan (CMS) dan profil syarikat untuk "Tasty Food", memfokuskan kepada promosi jenama dan interaksi pengunjung. Platform ini menyajikan antaramuka web untuk orang awam menyemak berita, galeri, dan profil syarikat; disokong sepenuhnya oleh panel pentadbir (Dashboard) teguh yang membolehkan manipulasi data menyeluruh.
+Sistem Content Management System (CMS) dan profil perusahaan untuk "Tasty Food", berfokus pada promosi merek dan interaksi pengunjung. Platform ini menyajikan antarmuka web bagi masyarakat umum untuk melihat berita, galeri, dan profil perusahaan; didukung penuh oleh panel admin (Dashboard) yang kuat untuk manipulasi data secara menyeluruh.
 
 ## 2. Teknologi yang Digunakan (Tech Stack)
-- **Frontend**: Enjin Templat Laravel Blade
+- **Frontend**: Laravel Blade Template Engine
 - **Backend**: PHP 8.1+, Laravel Framework v10
-- **Pengurusan Pangkalan Data**: MySQL/SQLite, berserta Eloquent ORM.
+- **Database**: MySQL/SQLite, beserta Eloquent ORM.
 
-## 3. Ciri-Ciri Utama & Logik Perniagaan
-- **Antaramuka Pelawat Awam (Frontend)**: Terdapat pautan navigasi utama ke Halaman Beranda (Home), Maklumat Korporat (Tentang), Liputan Media (Berita), Galeri Foto (Galery), dan Halaman Berhubung (Kontak).
-- **Papan Pemuka Pentadbir (Admin Dashboard)**: Meliputi sistem operasi CRUD bersepadu yang mengawal elemen portal: Berita, Tentang, Galeri, dan Kontak.
-- **Konfigurasi Info Global**: Tetapan maklumat lazim organisasi diuruskan secara eksklusif menggunakan `/info` di papan pemuka, menjadikan perubahan nama atau alamat sangat dinamik.
-- **Modul Pemulihan "Tong Sampah" (Soft Deletes / Recycle Bin)**: Logik pengaturcaraan sofistikated (`TrashController`) memastikan bahawa rekod yang dipadamkan boleh ditinjau semula, dipulihkan (*Restore*), atau dihapuskan sepenuhnya secara kekal (*Force Delete*).
+## 3. Fitur Utama & Logika Bisnis
+- **Antarmuka Pengunjung Publik (Frontend)**: Terdapat navigasi utama ke Halaman Beranda (Home), Informasi Korporat (Tentang), Liputan Media (Berita), Galeri Foto (Galery), dan Halaman Hubungi Kami (Kontak).
+- **Dashboard Admin**: Meliputi sistem operasi CRUD terpadu yang mengontrol elemen portal: Berita, Tentang, Galeri, dan Kontak.
+- **Konfigurasi Info Global**: Pengaturan informasi umum organisasi dikelola secara eksklusif menggunakan `/info` di dashboard, menjadikan perubahan nama atau alamat sangat dinamis.
+- **Modul *Recycle Bin* (*Soft Deletes*)**: Logika pemrograman terstruktur (`TrashController`) memastikan bahwa *record* yang dihapus dapat ditinjau kembali, dipulihkan (*Restore*), atau dihapus secara permanen (*Force Delete*).
 
-## 4. Struktur Direktori Projek
-- `app/Http/Controllers/`: Mengandungi puluhan kawalan berasingan bagi menguruskan model data yang berbeza (`BeritaController`, `TrashController`, `InfoController`, dll).
-- `routes/web.php`: Tetapan laluan web yang diasingkan secara kemas ke segmen: **Pengunjung Awam**, **Otentikasi**, dan kumpulan perutean **Admin Dashboard**.
-- `database/`: Mengawal fail migrasi (Migration) dan pengisi pangkalan data (Seeders).
-- `resources/views/`: Menghimpunkan fail HTML campuran Blade, fail ini dipecah lagi pada susunan awam dan subdirektori pengurusan CMS di dalam papan pemuka.
+## 4. Struktur Direktori Proyek
+- `app/Http/Controllers/`: Berisi puluhan *controller* terpisah untuk mengelola model data yang berbeda (`BeritaController`, `TrashController`, `InfoController`, dll).
+- `routes/web.php`: Pengaturan *routes* web yang dipisahkan secara rapi ke segmen: **Pengunjung Publik**, **Authentication**, dan grup *routes* **Dashboard Admin**.
+- `database/`: Mengelola file migration dan pengisi database (seeder).
+- `resources/views/`: Mengumpulkan file HTML campuran Blade, yang dibagi lagi ke dalam tata letak publik dan subdirektori manajemen CMS di dalam dashboard.
 
-## 5. Panduan Pemasangan & Cara Menjalankan Projek
-Langkah-langkah untuk persediaan di persekitaran tempatan (*localhost*):
+## 5. Panduan Instalasi & Cara Menjalankan Proyek
+Langkah-langkah untuk persiapan di lingkungan lokal (*localhost*):
 
-1. **Jalankan Pemasangan Pakej Asas**:
+1. **Jalankan Instalasi *Package* Dasar**:
    ```bash
    composer install
    npm install
    ```
-2. **Tetapan Pangkalan Data**:
-   Wujudkan fail environment:
+2. **Konfigurasi Database**:
+   Buat file *environment*:
    ```bash
    cp .env.example .env
    ```
-   Pastikan sambungan ke server pangkalan data pada kekunci `DB_...` adalah benar dan aktif.
-3. **Penyediaan Kunci Projek & Migrasi Data**:
+   Pastikan koneksi ke server database pada variabel `DB_...` valid dan aktif.
+3. **Persiapan Security Key & Migration Data**:
    ```bash
    php artisan key:generate
    php artisan migrate
    ```
-4. **Laksanakan Servis**:
-   Buka terminal pengoperasian:
+4. **Jalankan Server**:
+   Buka terminal eksekusi:
    ```bash
    npm run dev
    php artisan serve
    ```
 
-## 6. Endpoint API / Skema Pangkalan Data
-Laluan rute logik yang tersenarai secara terperinci (Web Routes):
-- **Pelawat Harian**:
+## 6. Endpoint API / Skema Database
+Daftar *routes* logika yang tersedia secara rinci (Web Routes):
+- **Pengunjung Harian**:
   - `GET /`, `/tentang`, `/galery`
   - `GET /berita`, `/berita/{berita}`
   - `GET /kontak`, `POST /kontak`
-- **Dashboard Pentadbir (Mendapat perlindungan Modul 'Auth')**:
+- **Dashboard Admin (Mendapatkan perlindungan Middleware 'Auth')**:
   - `GET /dashboard` : Analisis utama.
-  - `Resource /dashboard/berita`, `tentang`, `galery`, `kontak` : Pengurusan Kandungan Laman.
-  - `Route /dashboard/info` : Menangani penyelarasan Maklumat Am (Get, Post, Edit, Put).
-  - `Route /dashboard/trash` : Mengendalikan rekod sistem yang dihapuskan secara sementara (`/restore/{type}/{id}`, `/delete/{type}/{id}`).
+  - `Resource /dashboard/berita`, `tentang`, `galery`, `kontak` : Manajemen Konten Situs.
+  - `Route /dashboard/info` : Menangani penyelarasan Informasi Umum (Get, Post, Edit, Put).
+  - `Route /dashboard/trash` : Mengelola *record* sistem yang dihapus sementara (`/restore/{type}/{id}`, `/delete/{type}/{id}`).
