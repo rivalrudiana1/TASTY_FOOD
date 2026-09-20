@@ -1,66 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tasty Food Portal
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Tajuk Projek & Ringkasan
+**Tasty Food (Web Company Profile & Portal CMS)**
+Sistem Pengurusan Kandungan (CMS) dan profil syarikat untuk "Tasty Food", memfokuskan kepada promosi jenama dan interaksi pengunjung. Platform ini menyajikan antaramuka web untuk orang awam menyemak berita, galeri, dan profil syarikat; disokong sepenuhnya oleh panel pentadbir (Dashboard) teguh yang membolehkan manipulasi data menyeluruh.
 
-## About Laravel
+## 2. Teknologi yang Digunakan (Tech Stack)
+- **Frontend**: Enjin Templat Laravel Blade
+- **Backend**: PHP 8.1+, Laravel Framework v10
+- **Pengurusan Pangkalan Data**: MySQL/SQLite, berserta Eloquent ORM.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 3. Ciri-Ciri Utama & Logik Perniagaan
+- **Antaramuka Pelawat Awam (Frontend)**: Terdapat pautan navigasi utama ke Halaman Beranda (Home), Maklumat Korporat (Tentang), Liputan Media (Berita), Galeri Foto (Galery), dan Halaman Berhubung (Kontak).
+- **Papan Pemuka Pentadbir (Admin Dashboard)**: Meliputi sistem operasi CRUD bersepadu yang mengawal elemen portal: Berita, Tentang, Galeri, dan Kontak.
+- **Konfigurasi Info Global**: Tetapan maklumat lazim organisasi diuruskan secara eksklusif menggunakan `/info` di papan pemuka, menjadikan perubahan nama atau alamat sangat dinamik.
+- **Modul Pemulihan "Tong Sampah" (Soft Deletes / Recycle Bin)**: Logik pengaturcaraan sofistikated (`TrashController`) memastikan bahawa rekod yang dipadamkan boleh ditinjau semula, dipulihkan (*Restore*), atau dihapuskan sepenuhnya secara kekal (*Force Delete*).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 4. Struktur Direktori Projek
+- `app/Http/Controllers/`: Mengandungi puluhan kawalan berasingan bagi menguruskan model data yang berbeza (`BeritaController`, `TrashController`, `InfoController`, dll).
+- `routes/web.php`: Tetapan laluan web yang diasingkan secara kemas ke segmen: **Pengunjung Awam**, **Otentikasi**, dan kumpulan perutean **Admin Dashboard**.
+- `database/`: Mengawal fail migrasi (Migration) dan pengisi pangkalan data (Seeders).
+- `resources/views/`: Menghimpunkan fail HTML campuran Blade, fail ini dipecah lagi pada susunan awam dan subdirektori pengurusan CMS di dalam papan pemuka.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 5. Panduan Pemasangan & Cara Menjalankan Projek
+Langkah-langkah untuk persediaan di persekitaran tempatan (*localhost*):
 
-## Learning Laravel
+1. **Jalankan Pemasangan Pakej Asas**:
+   ```bash
+   composer install
+   npm install
+   ```
+2. **Tetapan Pangkalan Data**:
+   Wujudkan fail environment:
+   ```bash
+   cp .env.example .env
+   ```
+   Pastikan sambungan ke server pangkalan data pada kekunci `DB_...` adalah benar dan aktif.
+3. **Penyediaan Kunci Projek & Migrasi Data**:
+   ```bash
+   php artisan key:generate
+   php artisan migrate
+   ```
+4. **Laksanakan Servis**:
+   Buka terminal pengoperasian:
+   ```bash
+   npm run dev
+   php artisan serve
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 6. Endpoint API / Skema Pangkalan Data
+Laluan rute logik yang tersenarai secara terperinci (Web Routes):
+- **Pelawat Harian**:
+  - `GET /`, `/tentang`, `/galery`
+  - `GET /berita`, `/berita/{berita}`
+  - `GET /kontak`, `POST /kontak`
+- **Dashboard Pentadbir (Mendapat perlindungan Modul 'Auth')**:
+  - `GET /dashboard` : Analisis utama.
+  - `Resource /dashboard/berita`, `tentang`, `galery`, `kontak` : Pengurusan Kandungan Laman.
+  - `Route /dashboard/info` : Menangani penyelarasan Maklumat Am (Get, Post, Edit, Put).
+  - `Route /dashboard/trash` : Mengendalikan rekod sistem yang dihapuskan secara sementara (`/restore/{type}/{id}`, `/delete/{type}/{id}`).
